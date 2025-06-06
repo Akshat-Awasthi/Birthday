@@ -6,21 +6,29 @@ export const QuotesSection = ({ id }) => {
 
   const quotes = [
     {
-      text: "In your smile, I find the strength to face any challenge.",
-      context: "From our first coffee date"
+      text: "Radhey Radhey",
+      context: "Morning greetings"
     },
     {
-      text: "Your laughter is the melody that makes my heart dance.",
-      context: "During our beach vacation"
+      text: "Paglet nahi toh",
+      context: "by my side always"
     },
     {
-      text: "With you, every moment feels like a celebration of life.",
-      context: "Our weekend adventures"
+      text: "aaj pta kya hua",
+      context: "obviously by chutki"
     },
     {
-      text: "You don't just light up a room, you illuminate my entire world.",
-      context: "What I think every time I see you"
-    }
+      text: "Ladayi ko kaise bhool jaaye",
+      context: "Every time we fight"
+    },
+    {
+        text: "mera pyara baccha",
+      context: "cutu always"
+    },
+    {
+      text: "bechara Motu",
+      context: "I'm not bechara okay"
+    },
   ];
 
   useEffect(() => {
@@ -46,10 +54,10 @@ export const QuotesSection = ({ id }) => {
   }, []);
 
   return (
-    <section id={id} className="min-h-screen bg-black py-20 relative z-10 overflow-hidden">
+    <section id={id} className="min-h-screen bg-black py-20 relative z-10 overflow-hidden snap-start">
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-4xl md:text-6xl font-thin text-white mb-8 sm:mb-16 tracking-wider text-center">
-          Words from My Heart
+            Our bond in Words
         </h2>
 
         <div 

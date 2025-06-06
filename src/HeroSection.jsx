@@ -202,7 +202,7 @@ export const HeroSection = ({ id }) => {
   return (
     <section
       id={id}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-900 to-purple-900"
+      className="h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-900 to-purple-900 snap-start"
     >
       {/* Canvas for falling petals */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" aria-hidden="true" />

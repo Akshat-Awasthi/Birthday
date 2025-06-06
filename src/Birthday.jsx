@@ -5,6 +5,7 @@ import { GallerySection } from './GallerySection';
 import { QuotesSection } from './QuotesSection';
 import { PersonalSection } from './PersonalSection';
 import { FutureSection } from './FutureSection';
+import { VideoSection } from './VideoSection';
 import { BackgroundAnimation } from './BackgroundAnimation';
 import { LoadingScreen } from './Loading';
 import { MusicPlayer } from './MusicPlayer';
@@ -14,12 +15,49 @@ export const Birthday = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [musicPlaying, setMusicPlaying] = useState(true);
 
+  // Section detection using scroll percentage
+  useEffect(() => {
+    const handleScroll = () => {
+      // Calculate scroll percentage
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = (window.scrollY / scrollHeight) * 100;
+      
+      console.log('Scroll percentage:', scrollPercentage);
+      
+      // Update active section based on scroll percentage
+      if (scrollPercentage < 16.67) {
+        setActiveSection('hero');
+      } else if (scrollPercentage < 33.33) {
+        setActiveSection('story');
+      } else if (scrollPercentage < 50) {
+        setActiveSection('memories');
+      } else if (scrollPercentage < 66.67) {
+        setActiveSection('videos');
+      } else if (scrollPercentage < 83.33) {
+        setActiveSection('quotes');
+      } else {
+        setActiveSection('future');
+      }
+    };
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Call once to set initial section
+    handleScroll();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Password and loading handlers
   const handleCorrectPassword = () => {
     setIsAuthenticated(true);
     setLoading(true);
-    // Start loading animation after password is correct
     setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -33,40 +71,42 @@ export const Birthday = () => {
     return <LoadingScreen />;
   }
 
+  const scrollToSection = (section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="birthday-experience relative overflow-hidden">
-      {/* Background particle animation using Three.js */}
       <BackgroundAnimation activeSection={activeSection} />
       
-      {/* Header Navigation */}
       <Header 
         activeSection={activeSection} 
-        navigateToSection={section => {
-          setActiveSection(section);
-          document.getElementById(section).scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-        }}
+        navigateToSection={scrollToSection}
         toggleMusic={() => setMusicPlaying(!musicPlaying)}
         musicPlaying={musicPlaying}
       />
       
-      {/* Music Controller (subtle UI in corner) */}
-      <MusicPlayer playing={musicPlaying} toggle={() => setMusicPlaying(!musicPlaying)} />
+      <MusicPlayer 
+        playing={musicPlaying} 
+        toggle={() => setMusicPlaying(!musicPlaying)} 
+        activeSection={activeSection}
+      />
       
-      {/* Main Content Sections */}
-      <main>
+      <main className="relative overflow-y-auto overflow-x-hidden snap-y snap-mandatory">
         <HeroSection id="hero" />
         <PersonalSection id="story" />
         <GallerySection id="memories" />
+        <VideoSection id="videos" />
         <QuotesSection id="quotes" />
         <FutureSection id="future" />
       </main>
       
-      {/* Footer */}
-      <footer className="py-8 text-center text-white/60 backdrop-blur-md bg-black/30">
-        <p className="font-light tracking-wider">"Every moment of your life is a brush stroke on the canvas of your legacy."</p>
-        <p className="mt-4 text-sm">Crafted with love and devotion.</p>
+      <footer className="py-8 text-center text-white backdrop-blur-md bg-black/70">
+        <p className="font-light tracking-wider">"Always Remember: Main hu na"</p>
+        <p className="mt-4 text-sm">Crafted with love by Amazing Akshat</p>
       </footer>
     </div>
   );

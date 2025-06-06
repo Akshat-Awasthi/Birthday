@@ -7,33 +7,33 @@ export const PersonalSection = ({ id }) => {
   const milestones = [
     {
       icon: <Coffee />,
-      date: "June 2023",
-      title: "First Meeting",
-      description: "That magical morning at the corner café where our eyes first met."
+      date: "2021",
+      title: "Facebook Chatting",
+      description: "Toh baate start hui thi, just a casual chat about life, dukh and dard aur fir kb pta nahi bestfriends ban gaye."
     },
     {
       icon: <HeartHandshake />,
-      date: "August 2023",
-      title: "First Date",
-      description: "Walking through the park, talking until sunset, not wanting the day to end."
+      date: "Oct 2021",
+      title: "First Meeting",
+      description: "Durga pandal, mujhe kitna wait krwaya, aur notes lene ja rhi ye ghar me bahana bna kr aayi thi."
     },
     {
       icon: <Sunrise />,
-      date: "December 2023",
-      title: "Morning Surprises",
-      description: "When you surprised me with breakfast in bed and your beautiful smile."
+      date: "2022",
+      title: "Collage Meets",
+      description: "Mai har month Allahabad aata tha, aur fir hum ghumne aur misti krne jaate the"
     },
     {
       icon: <Gift />,
-      date: "March 2024",
-      title: "Last Birthday",
-      description: "A day filled with laughter, love, and unforgettable moments."
+      date: "2023",
+      title: "Memories Together",
+      description: "Kuch na kuch khaas krne ka try, ek dusre ke dosto se jalan, hak jatana, aur tera birthday bnana toh yaad rhega"
     },
     {
       icon: <Star />,
       date: "Today",
-      title: "Another Chapter",
-      description: "Here we are, celebrating you and our beautiful journey together."
+      title: "Always Together",
+      description: "Aur aaj itne saalo ke baad bhi, itne ldayi, momories ke sath bestfriends hain, aur hamesha rahenge. Tere bina sab kuch adhoora hai."
     }
   ];
 
@@ -56,7 +56,7 @@ export const PersonalSection = ({ id }) => {
   }, []);
 
   return (
-    <section id={id} className="min-h-screen bg-black py-20 relative z-10">
+    <section id={id} className="min-h-screen bg-black py-20 relative z-10 snap-start">
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-4xl md:text-6xl font-thin text-white mb-6 tracking-wider text-center">
           Our Story

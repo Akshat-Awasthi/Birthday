@@ -50,10 +50,10 @@ export const FutureSection = ({ id }) => {
   }, []);
 
   return (
-    <section id={id} className="min-h-screen bg-black py-20 relative z-10">
+    <section id={id} className="h-[100vh] bg-black py-20 relative z-10 snap-start">
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-4xl md:text-6xl font-thin text-white mb-4 sm:mb-6 tracking-wider text-center">
-          Our Tomorrow
+          Our Tomorrow (Dreams)
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-white/70 text-center mb-12 sm:mb-16 max-w-2xl mx-auto px-4">
           As we celebrate this special day, I dream of all the beautiful moments that await us...

@@ -9,6 +9,7 @@ export const Header = ({ activeSection, navigateToSection, toggleMusic, musicPla
     { id: 'hero', label: 'HOME' },
     { id: 'story', label: 'OUR STORY' },
     { id: 'memories', label: 'MEMORIES' },
+    { id: 'videos', label: 'VIDEOS' },
     { id: 'quotes', label: 'MESSAGES' },
     { id: 'future', label: 'TOMORROW' }
   ];
