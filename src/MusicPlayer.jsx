@@ -27,7 +27,6 @@ const sectionSongs = {
 export const MusicPlayer = ({ playing, toggle, activeSection }) => {
   const audioRef = useRef(null);
   const [currentSong, setCurrentSong] = useState('Birthday Intro ♪');
-  const [isReady, setIsReady] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
   const [isChangingSection, setIsChangingSection] = useState(false);
   const [volume, setVolume] = useState(0);

@@ -12,7 +12,10 @@ import { MusicPlayer } from './MusicPlayer';
 import { PasswordPage } from './PasswordPage';
 
 export const Birthday = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Check localStorage on initial render
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [musicPlaying, setMusicPlaying] = useState(true);
@@ -24,22 +27,28 @@ export const Birthday = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercentage = (window.scrollY / scrollHeight) * 100;
       
-      console.log('Scroll percentage:', scrollPercentage);
-      
       // Update active section based on scroll percentage
+      let newSection;
       if (scrollPercentage < 16.67) {
-        setActiveSection('hero');
+        newSection = 'hero';
       } else if (scrollPercentage < 33.33) {
-        setActiveSection('story');
+        newSection = 'story';
       } else if (scrollPercentage < 50) {
-        setActiveSection('memories');
+        newSection = 'memories';
       } else if (scrollPercentage < 66.67) {
-        setActiveSection('videos');
+        newSection = 'videos';
       } else if (scrollPercentage < 83.33) {
-        setActiveSection('quotes');
+        newSection = 'quotes';
       } else {
-        setActiveSection('future');
+        newSection = 'future';
       }
+
+      // If entering video section, pause the music
+      if (newSection === 'videos' && activeSection !== 'videos' && musicPlaying) {
+        setMusicPlaying(false);
+      }
+      
+      setActiveSection(newSection);
     };
 
     // Add scroll listener
@@ -52,11 +61,13 @@ export const Birthday = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [activeSection, musicPlaying]);
 
   // Password and loading handlers
   const handleCorrectPassword = () => {
     setIsAuthenticated(true);
+    // Store authentication status in localStorage
+    localStorage.setItem('isAuthenticated', 'true');
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -95,7 +106,7 @@ export const Birthday = () => {
         activeSection={activeSection}
       />
       
-      <main className="relative overflow-y-auto overflow-x-hidden snap-y snap-mandatory">
+      <main className="relative overflow-y-auto overflow-x-hidden snap-y snap-mandatory bg-black">
         <HeroSection id="hero" />
         <PersonalSection id="story" />
         <GallerySection id="memories" />
